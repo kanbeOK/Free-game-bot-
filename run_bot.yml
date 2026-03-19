@@ -1,15 +1,15 @@
-name: Game Bot 15m
+name: Game Bot Xin 15m
 
 on:
   schedule:
     - cron: '*/15 * * * *'
-  workflow_dispatch:
+  workflow_dispatch: # Cho phép bấm chạy thủ công để test
 
 jobs:
   run-and-save:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write # Cấp quyền ghi file chống spam
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -29,8 +29,8 @@ jobs:
 
       - name: Commit and Push changes
         run: |
-          git config --global user.name 'GameBot'
+          git config --global user.name 'GameBot Xin'
           git config --global user.email 'bot@github.com'
           git add sent_games.txt
-          git commit -m "Update list [skip ci]" || exit 0
+          git commit -m "Update sent list [skip ci]" || exit 0
           git push
